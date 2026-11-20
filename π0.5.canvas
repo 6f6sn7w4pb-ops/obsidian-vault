@@ -1,0 +1,42 @@
+{
+	"nodes":[
+		{"id":"2b862e1d718bd14b","type":"text","text":"![[π0.5架构.png]]","x":-40,"y":-200,"width":610,"height":110},
+		{"id":"480036151f3f08bb","type":"text","text":"π₀.₅ 架构","x":-240,"y":-150,"width":120,"height":60},
+		{"id":"20c7bbc0abc6705c","type":"text","text":"模型由 Transformer 构成，接收 \\(N\\) 个多模态输入 Token：\\[ x_{1:N} \\]\n\n\\[ x_{1:N} \\]","x":-40,"y":-20,"width":375,"height":50},
+		{"id":"f347d7b0395d33c5","type":"text","text":"并生成多模态输出：![[多模态输出.png]]","x":-120,"y":81,"width":390,"height":120},
+		{"id":"13bea134aa030253","type":"text","text":"输入 Token 可以是：\n\n- 文本 Token。\n    \n- 图像 Patch。\n    \n- Flow Matching 中间去噪状态对应的连续动作 Token。","x":320,"y":101,"width":250,"height":199},
+		{"id":"643ceb8e6ca96b2b","type":"text","text":"结合离散与连续动作表示","x":-305,"y":360,"width":250,"height":50},
+		{"id":"5d20dcf19c2c939d","type":"text","text":"使用 Flow Matching 来预测连续动作","x":49,"y":354,"width":250,"height":60},
+		{"id":"12248663b8781566","type":"text","text":"π₀.₅ 同时学习两种动作预测方式","x":12,"y":680,"width":250,"height":60},
+		{"id":"33bfdf59440ff19b","type":"text","text":"第二种，通过 Flow Matching 的向量场迭代积分，生成连续动作。","x":313,"y":740,"width":335,"height":78},
+		{"id":"a71522f8a443dd73","type":"text","text":"第一种，通过 FAST Tokenizer 将动作编码为离散 Token，再进行自回归预测。","x":326,"y":589,"width":309,"height":91},
+		{"id":"76286d989a3a570f","type":"text","text":"理想的模型应该同时具备：\n\n离散动作表示的训练效率，以及 Flow Matching 连续动作表示的实时推理能力。","x":-9,"y":505,"width":290,"height":130},
+		{"id":"d43583fa8560ce81","type":"text","text":"为了避免两种动作表示相互干扰，模型利用注意力矩阵阻止它们直接关注彼此。","x":324,"y":900,"width":356,"height":60},
+		{"id":"6c4da97fe7420d62","type":"text","text":"预训练（Pre-training）","x":-340,"y":1040,"width":240,"height":50},
+		{"id":"1af3aa6c73bc1d88","type":"text","text":"第一阶段使用范围广泛的机器人与非机器人数据。\n\n模型被训练为标准自回归 Transformer，执行文本、物体位置以及 FAST 编码动作 Token 的下一个 Token 预测。","x":-31,"y":1025,"width":271,"height":65},
+		{"id":"0e2a8734bd561b59","type":"text","text":"模型被训练为标准自回归 Transformer，执行文本、物体位置以及 FAST 编码动作 Token 的下一个 Token 预测。","x":301,"y":1001,"width":334,"height":129},
+		{"id":"9400c32461920359","type":"text","text":"后训练（Post-training）","x":-342,"y":1185,"width":242,"height":50},
+		{"id":"97e43f6b92e3c4db","type":"text","text":"模型首先使用离散 Token 进行 280,000 次梯度更新。\n\n随后进入第二个训练阶段，即 Post-training。","x":-31,"y":1175,"width":250,"height":60},
+		{"id":"7c511e3919ec85d0","type":"text","text":"让模型专门适应家庭移动操作任务","x":349,"y":1155,"width":239,"height":60},
+		{"id":"61b92fb05dbe633c","type":"text","text":"加入通过 Flow Matching 生成连续动作块的动作专家","x":319,"y":1253,"width":250,"height":60},
+		{"id":"908570e01ebe80fc","x":-180,"y":-860,"width":614,"height":540,"type":"text","text":"![[π0.5架构处理.png]]"}
+	],
+	"edges":[
+		{"id":"4743d5d61dd11585","fromNode":"480036151f3f08bb","fromSide":"right","toNode":"2b862e1d718bd14b","toSide":"left"},
+		{"id":"4922a172331ea1a2","fromNode":"2b862e1d718bd14b","fromSide":"bottom","toNode":"20c7bbc0abc6705c","toSide":"top"},
+		{"id":"ac3dcc81b16112f3","fromNode":"20c7bbc0abc6705c","fromSide":"bottom","toNode":"f347d7b0395d33c5","toSide":"top"},
+		{"id":"8bd07d4ea718ccf0","fromNode":"f347d7b0395d33c5","fromSide":"right","toNode":"13bea134aa030253","toSide":"left"},
+		{"id":"eef0cb999ec3d0b2","fromNode":"643ceb8e6ca96b2b","fromSide":"right","toNode":"5d20dcf19c2c939d","toSide":"left"},
+		{"id":"ce475c6bd25818df","fromNode":"5d20dcf19c2c939d","fromSide":"bottom","toNode":"76286d989a3a570f","toSide":"top"},
+		{"id":"0477a69218035a28","fromNode":"76286d989a3a570f","fromSide":"bottom","toNode":"12248663b8781566","toSide":"top"},
+		{"id":"6ff8b1039564d780","fromNode":"12248663b8781566","fromSide":"right","toNode":"a71522f8a443dd73","toSide":"left"},
+		{"id":"15f86bc530f35dd3","fromNode":"12248663b8781566","fromSide":"right","toNode":"33bfdf59440ff19b","toSide":"left"},
+		{"id":"d93bd64c46e599c3","fromNode":"a71522f8a443dd73","fromSide":"right","toNode":"d43583fa8560ce81","toSide":"right"},
+		{"id":"1ef0883cf6a4cd32","fromNode":"33bfdf59440ff19b","fromSide":"right","toNode":"d43583fa8560ce81","toSide":"right"},
+		{"id":"0f48146827e437e3","fromNode":"6c4da97fe7420d62","fromSide":"right","toNode":"1af3aa6c73bc1d88","toSide":"left"},
+		{"id":"3e838068bcf90de8","fromNode":"1af3aa6c73bc1d88","fromSide":"right","toNode":"0e2a8734bd561b59","toSide":"left"},
+		{"id":"f85c13f809edabe3","fromNode":"9400c32461920359","fromSide":"right","toNode":"97e43f6b92e3c4db","toSide":"left"},
+		{"id":"e3dc08fcd30465fb","fromNode":"97e43f6b92e3c4db","fromSide":"right","toNode":"7c511e3919ec85d0","toSide":"left"},
+		{"id":"f385f8d4a1d00784","fromNode":"97e43f6b92e3c4db","fromSide":"right","toNode":"61b92fb05dbe633c","toSide":"left"}
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"0b355a229c8f529a","x":-385,"y":-342,"width":265,"height":102,"type":"text","text":"Action Expert 是 π₀.₅ 中专门负责生成连续机器人动作的 Transformer 网络"},
+		{"id":"642fe79c12ac6d7f","x":-427,"y":-517,"width":367,"height":137,"type":"text","text":"- VLM 主干：理解当前环境、机器人状态和任务语义。\n- Action Expert：根据这些条件，生成机械臂可以执行的连续动作序列。"},
+		{"id":"d80b0eec456f0024","x":71,"y":-636,"width":214,"height":50,"type":"text","text":"VLM（视觉语言主干）"},
+		{"id":"ee53f5fd40f776b9","x":55,"y":-567,"width":246,"height":50,"type":"text","text":"Action Expert（动作专家）"},
+		{"id":"d16ad1fc387603bf","x":40,"y":-502,"width":276,"height":53,"type":"text","text":"连续动作块（Action Chunk）"},
+		{"id":"01d549170ff257c1","x":128,"y":-709,"width":100,"height":60,"type":"text","text":"输入"},
+		{"id":"d908898584290e0c","x":88,"y":-436,"width":180,"height":50,"type":"text","text":"机器人底层控制器"},
+		{"id":"02e040e0e258076d","x":-20,"y":-342,"width":442,"height":131,"type":"text","text":"![[Action expert.png]]"}
+	],
+	"edges":[
+		{"id":"8ec70b44fc8fb48b","fromNode":"0b355a229c8f529a","fromSide":"top","toNode":"642fe79c12ac6d7f","toSide":"bottom"},
+		{"id":"a1a63c6e14fef87e","fromNode":"01d549170ff257c1","fromSide":"bottom","toNode":"d80b0eec456f0024","toSide":"top"},
+		{"id":"14bf4ed5a0ab1328","fromNode":"d80b0eec456f0024","fromSide":"bottom","toNode":"ee53f5fd40f776b9","toSide":"top"},
+		{"id":"bb67f8c438f429c6","fromNode":"ee53f5fd40f776b9","fromSide":"bottom","toNode":"d16ad1fc387603bf","toSide":"top"},
+		{"id":"413f82e968259917","fromNode":"d16ad1fc387603bf","fromSide":"bottom","toNode":"d908898584290e0c","toSide":"top"},
+		{"id":"743da631df3f06a3","fromNode":"0b355a229c8f529a","fromSide":"right","toNode":"02e040e0e258076d","toSide":"left"}
+	]
+}
